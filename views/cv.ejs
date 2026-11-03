@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | <%= resume.name %></title>
+</head>
+<body>
+    <h1><%= resume.name %></h1>
+    
+    <div id="div1" class="div1">
+        <div><%= resume.location %> | <%= resume.phone %> | Mail:<a href="mailto:<%= resume.email %>" target="_blank"><%= resume.email %></a></div>
+        <div>LinkedIn:<a href="<%= resume.linkedin %>" target="_blank">LinkedIn Profile</a> | GitHub:<a href="<%= resume.github %>" target="_blank">GitHub Profile</a></div>
+    </div>
+    
+    <b>______________________________________________________________________________________________________________________________</b> 
+    
+    <h3><u>Summary</u></h3>
+    <p><%= resume.summary %></p>
+
+    <h3><u>Education</u></h3>
+    <% resume.education.forEach(function(edu) { %>
+        <div><b><%= edu.qualification %></b>, <%= edu.institution %> <span> | <%= edu.period %></span></div>
+    <% }); %>
+
+    <h3><u>Technical Skills</u></h3>
+    <ul>
+        <% resume.technicalSkills.forEach(function(skill) { %>
+            <li><b><%= skill.category %></b>: <%= skill.items %></li>
+        <% }); %>
+    </ul>
+
+    <h3><u>Soft Skills</u></h3>
+    <ul>
+        <% resume.softSkills.forEach(function(sSkill) { %>
+            <li><%= sSkill %></li>
+        <% }); %>
+    </ul>
+
+    <h3><u>Courses & Certifications</u></h3>
+    <% resume.certifications.forEach(function(cert) { %>
+        <div><b><%= cert.title %></b> | <%= cert.platform %> (<%= cert.date %>)</div>
+    <% }); %>
+
+    <h3><u>Projects</u></h3>
+    <% resume.projects.forEach(function(project) { %>
+        <div><b><%= project.title %></b> <span> | <%= project.period %></span></div>
+        <div><small><%= project.tech %></small></div>
+        <ul>
+            <% project.points.forEach(function(point) { %>
+                <li><%= point %></li>
+            <% }); %>
+        </ul>
+    <% }); %>
+
+    <h3><u>Languages</u></h3>
+    <div>
+        <% resume.languages.forEach(function(lang) { %>
+            <span>• <%= lang %> </span>
+        <% }); %>
+    </div>
+</body>
+</html>
